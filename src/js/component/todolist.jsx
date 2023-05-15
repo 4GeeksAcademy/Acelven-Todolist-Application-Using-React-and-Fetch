@@ -54,9 +54,11 @@ function App() {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
     fetch('https://assets.breatheco.de/apis/fake/todos/user/acelven', {
+        
         method: 'PUT',
         body: JSON.stringify(newTodos),
         headers: {
+          
           'Content-Type': 'application/json'
         }
         
@@ -76,14 +78,34 @@ function App() {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
+    fetch('https://assets.breatheco.de/apis/fake/todos/user/acelven', {
+        
+    method: 'PUT',
+    body: JSON.stringify(newTodos),
+    headers: {
+     
+      'Content-Type': 'application/json'
+    }
     
-  };
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+};
 
   const removeAll = index => {
     const newTodos = [...todos];
     newTodos.splice(index.lenght);
     setTodos(newTodos);
-
+    fetch('https://assets.breatheco.de/apis/fake/todos/user/acelven', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
   };
 
   return (
